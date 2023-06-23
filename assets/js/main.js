@@ -41,12 +41,10 @@ En el caso de que el punto no esté en ningun rectangulo, la función debe retor
 Tip: 
 Al hacer destructuring, se puede asignar un alias a cada clave si se le quiere cambiar el nombre ej: 
 const { uno: primero, dos, tres } = numeros
-//ademas del destructuring ponerle un alias al point x y al point y
 
 Plus: Se puede realizar en una sola linea si el destructuring del punto se hace en el parámetro de la función. Sino dos lineas.
 
 */
-
 //la clave es el atributo y lo que viene despues es el valor que le asignas
 //recibo un punto con coordenadas x e y y hacer un find dentro del x y dentro del y
 //voy a devolver un object.find y ver en el find que valores le paso. ver que sea mayor o menor e igualy bla
@@ -58,19 +56,22 @@ const myObjects = [
 
 const detectCollision = (objects, point) => {
 
-    for (let i = 0; i < objects.length; i++) {
-        let object = objects[i]
-        if (point.x >= object.x && point.x <= object.x + object.width &&
-            point.y >= object.y && point.y <= object.y + object.height)
-            return object
-    }
+    //ademas del destructuring ponerle un alias al point x y al point y
+    const {x: pointX, y:pointY} = point;
+
+    // for (let i = 0; i < objects.length; i++) {
+    //     let object = objects[i]
+    //     if (point.x >= object.x && point.x <= object.x + object.width &&
+    //         point.y >= object.y && point.y <= object.y + object.height)
+    //         return object
+    // }
 
     //Comentar el for y colocar acá la respuesta
+    return rectangles.find(
+        )
 
-   // const { x: pointX, y: pointY } = point
    // return true
-
-}
+};
 
 console.log('Ejercico _2  ->', detectCollision(myObjects, { x: 4, y: 2 }))
 
@@ -174,6 +175,6 @@ const final = semiFinal.filter(({pais}) => (pais === "Argentina" ? "Argentina" :
 const finalResultado = final.map((pais) => ({...pais, goles: Math.floor(Math.random() * 101)}));
 console.log(finalResultado);
 
-const campeon = finalResultado.find(({pais, goles}) => finalResultado.goles[0] > finalResultado.goles[1] ? `El campeón es ${finalResultado.pais[0]}` : `El campeón es ${finalResultado.pais[1]}`);
+const campeon = `El campeón es ${finalResultado[0].goles > finalResultado[1].goles ? finalResultado[0].pais : finalResultado[1].pais}`;
 
 console.log('Ejercicio _4 ->', campeon);
